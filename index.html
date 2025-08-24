@@ -126,7 +126,6 @@
             100% { transform: translateY(100vh) scale(1.2); opacity: 0; }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="search-container">
@@ -140,37 +139,37 @@
             <button class="search-btn" id="imageSearchBtn">小刘馨</button>
         </div>
     </div>
-    <div class="footer">ludao &copy; 2025</div>
+    <div class="footer">ludao &copy; 2024</div>
 
 <script>
-    const searchBtn = document.getElementById('searchBtn');
-    const imageSearchBtn = document.getElementById('imageSearchBtn');
+    const searchInput = document.querySelector('.search-input');
 
-    // 点击百度一下 -> 跳转到哔哩哔哩
-    searchBtn.addEventListener('click', () => {
-        window.open('https://www.bilibili.com/', '_blank');
-    });
-
-    // 点击图片搜索 -> 跳转到 ChatGPT
-    imageSearchBtn.addEventListener('click', () => {
-        window.open('https://chat.openai.com/', '_blank');
-    });
-     // 生成爱心效果
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = Math.random() * 10 + 15 + 'px';
-            heart.style.animationDuration = Math.random() * 3 + 4 + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => {
-                heart.remove();
-            }, 7000);
+    // 按下回车时跳转到百度
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();  // 阻止表单提交（如果有的话）
+            const query = searchInput.value.trim();  // 获取输入框的内容
+            if (query) {
+                window.location.href = `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`;  // 跳转到百度搜索
+            }
         }
+    });
 
-        setInterval(createHeart, 400);
+    // 生成爱心效果
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = Math.random() * 10 + 15 + 'px';
+        heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => {
+            heart.remove();
+        }, 7000);
+    }
+
+    setInterval(createHeart, 400);  // 每400毫秒生成一个爱心
 </script>
 </body>
 </html>
-
